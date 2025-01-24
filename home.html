@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Historical Museum</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px 50px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        .button-container button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .register {
+            background-color: #2196F3;
+            color: white;
+        }
+        .book-ticket {
+            background-color: #FF5722;
+            color: white;
+        }
+        .login:hover {
+            background-color: #45a049;
+        }
+        .register:hover {
+            background-color: #1976D2;
+        }
+        .book-ticket:hover {
+            background-color: #E64A19;
+        }
+        .gallery {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery img.active {
+            opacity: 1;
+        }
+        .description {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+            max-width: 900px;
+        }
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><strong>Indian Historical Museum</strong></h1>
+        <div class="button-container">
+            <button class="login">Login</button>
+            <button class="register">Register</button>
+            <a href="chatbot.html">
+                <button class="book-ticket">Book Your Ticket</button>
+            </a>
+        </div>
+    </header>
+
+    <div class="gallery">
+        <img src="pic1.jpg" alt="Museum Interior" class="active">
+        <img src="pic2.jpg" alt="Ancient Artifacts">
+        <img src="pic3.jpg" alt="Historical Exhibit">
+    </div>
+
+    <div class="description">
+        <h2>Welcome to the Indian Historical Museum</h2>
+        <p>The Indian Historical Museum is a treasure trove of artifacts, relics, and exhibits that narrate the rich and diverse history of India. Our museum showcases ancient sculptures, rare manuscripts, and magnificent art collections that reflect India's cultural heritage. From the grandeur of the Mughal era to the fascinating stories of the freedom movement, the museum is an immersive experience for history enthusiasts.</p>
+        <p>Visit us to explore interactive exhibits, attend special workshops, and participate in guided tours that bring history to life.</p>
+    </div>
+
+    <footer>
+        <p>Address: 123 Heritage Lane, New Delhi, India</p>
+        <p>Email: info@indianmuseum.com | Phone: +91 12345 67890</p>
+        <p>&copy; 2025 Indian Historical Museum. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+        
+        setInterval(showNextImage, 3000);
+    </script>
+</body>
+</html>

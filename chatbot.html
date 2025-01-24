@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Ticketing Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .chatbot-container {
+            background: white;
+            width: 60%;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        #user-input {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #features {
+            text-align: center;
+            padding: 50px;
+        }
+        #features ul {
+            list-style: none;
+            padding: 0;
+        }
+        #features ul li {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .cta {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta a {
+            padding: 15px 30px;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+        .cta a:hover {
+            background: #e68900;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Museum Ticketing System</h1>
+        <p>Book your tickets seamlessly with our AI-powered chatbot.</p>
+    </header>
+    
+    <section class="cta">
+        <a href="#chatbot-section">Start Booking Now</a>
+    </section>
+    
+    <section id="chatbot-section">
+        <div class="chatbot-container">
+            <h2>Chat with Our Ticketing Assistant</h2>
+            <div class="chat-window">
+                <div id="chat-box">
+                    <p><strong>Bot:</strong> Hello! Let's book your ticket. Please provide the following details.</p>
+                </div>
+                <input type="text" id="user-input" placeholder="Type your message here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features">
+        <h2>Why Use Our Chatbot?</h2>
+        <ul>
+            <li>24/7 Availability</li>
+            <li>Fast and Error-Free Ticket Booking</li>
+            <li>Multilingual Support</li>
+            <li>Secure Payment Gateway Integration</li>
+            <li>Real-time Responses</li>
+        </ul>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Museum Ticketing. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let chatStep = 0;
+        let bookingData = {};
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+
+            if (userInput.trim() !== "") {
+                chatBox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+                if (chatStep === 0) {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Great! What's your full name?</p>`;
+                    bookingData.name = userInput;
+                } else if (chatStep === 1) {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Got it, ${userInput}. Please provide your email address.</p>`;
+                    bookingData.email = userInput;
+                } else if (chatStep === 2) {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Thanks! How many tickets do you need?</p>`;
+                    bookingData.tickets = userInput;
+                } else if (chatStep === 3) {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> When would you like to visit? (Please enter a date)</p>`;
+                    bookingData.date = userInput;
+                } else if (chatStep === 4) {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Thank you! Final step: Enter your payment method (Card/Wallet).</p>`;
+                    bookingData.payment = userInput;
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Your booking is complete. Confirmation sent to ${bookingData.email}!</p>`;
+                }
+
+                chatStep++;
+                document.getElementById('user-input').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
